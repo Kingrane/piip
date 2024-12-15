@@ -1,6 +1,3 @@
-// script.js
-
-// Функция для получения информации об IP-адресе
 async function getIpInfo() {
   try {
     const ipInput = document.getElementById('ipInput');
@@ -21,7 +18,7 @@ async function getIpInfo() {
         lon: data.lon,
       };
 
-      // Вывод информации об IP-адресе на страницу
+      // Display IP info on the page
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = '';
       Object.keys(ipInfo).forEach((key) => {
@@ -30,7 +27,7 @@ async function getIpInfo() {
         resultsDiv.appendChild(paragraph);
       });
 
-      // Создание карты с помощью Leaflet
+      // Create the map
       const map = L.map('map').setView([ipInfo.lat, ipInfo.lon], 13);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
@@ -38,10 +35,10 @@ async function getIpInfo() {
       }).addTo(map);
       const marker = L.marker([ipInfo.lat, ipInfo.lon]).addTo(map);
     } else {
-      alert('Пожалуйста, введите IP-адрес!');
+      alert('Please enter an IP address!');
     }
   } catch (error) {
     console.error(error);
-    alert('Ошибка соединения!');
+    alert('Connection error!');
   }
 }
